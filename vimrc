@@ -14,7 +14,7 @@ syntax on
 "--------
 " color scheme
 set background=dark
-color solarized
+color molokai
 
 " highlight current line
 au WinLeave * set nocursorline nocursorcolumn
@@ -163,6 +163,7 @@ let g:user_emmet_expandabbr_key='<C-j>'
 " NeoComplCache
 let g:neocomplcache_enable_at_startup=1
 let g:neoComplcache_disableautocomplete=1
+let g:neocomplcache_temporary_dir = "$HOME/.vim/tmp/neocomplcache"
 "let g:neocomplcache_enable_underbar_completion = 1
 "let g:neocomplcache_enable_camel_case_completion = 1
 let g:neocomplcache_enable_smart_case=1
@@ -265,4 +266,18 @@ if has("gui_running")
     map <D-8> 8gt
     map <D-9> 9gt
     map <D-0> :tablast<CR>
+endif
+
+set tags=./tags,/home/jolyon/worktree/tags,/home/jolyon/qa/tags,/usr/include/tags
+
+if has("cscope")
+    set csprg=/usr/bin/cscope
+    set csto=1
+    set cst
+    set nocsverb
+" add any database in current directory
+    if filereadable("/home/jolyon/worktree/cscope.out")
+        cs add /home/jolyon/worktree/cscope.out
+    endif
+    set csverb
 endif
